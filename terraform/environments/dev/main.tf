@@ -12,7 +12,7 @@ resource "google_compute_instance" "default" {
   machine_type = "e2-micro"
   zone         = var.zone
 
-  tags = ["itops"]
+  tags = ["itops-name"]
 
   boot_disk {
     initialize_params {
