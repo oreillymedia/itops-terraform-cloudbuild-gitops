@@ -26,12 +26,7 @@ steps:
 
 - id: 'tf plan'
   name: 'docker'
-  args: 
-  - '-c'
-  - |
-      if [ -d "environments/$BRANCH_NAME/" ]; then
-        docker compose run --rm infractl plan --module environments/dev --env itops-playground
-      fi 
+  args: 'docker compose run --rm infractl plan --module environments/dev --env itops-playground' 
 
 # [START tf-plan]
 # - id: 'tf plan'
