@@ -1,0 +1,18 @@
+services:
+  infractl:
+    entrypoint: infractl
+    image: gcr.io/common-build/infractl:latest
+    networks:
+      default: {}
+    tty: true
+    volumes:
+    - ~/.gitconfig:/root/.gitconfig
+    - ./terraform:/infractl/terraform
+    - gcloud-config:/root/.config/gcloud
+    - infractl-vault:/infractl/.vault
+    - terraform-cache:/root/.terraform.d/plugin-cache
+version: '2.1'
+volumes:
+  gcloud-config: {}
+  infractl-vault: {}
+  terraform-cache: {}
