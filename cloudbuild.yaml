@@ -26,7 +26,7 @@ steps:
 
 - id: 'tf plan'
   name: 'docker'
-  args: ['-c', 'docker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
+  args: ['docker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
 
 # [START tf-plan]
 # - id: 'tf plan'
