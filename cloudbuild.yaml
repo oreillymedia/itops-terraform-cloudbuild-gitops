@@ -27,7 +27,7 @@ steps:
 - id: 'tf plan'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'dcoker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
+  args: ['-c', 'docker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
 
 # [START tf-plan]
 # - id: 'tf plan'
