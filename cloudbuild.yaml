@@ -15,7 +15,7 @@
 
 steps:
 - id: 'dev'
-  name: 'docker/compose:1.26.2'
+  name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
   args: 
   - '-c'
@@ -25,9 +25,9 @@ steps:
       echo "***********************"
 
 - id: 'tf plan'
-  name: 'docker'
+  name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['c', 'dcoker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
+  args: ['-c', 'dcoker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
 
 # [START tf-plan]
 # - id: 'tf plan'
