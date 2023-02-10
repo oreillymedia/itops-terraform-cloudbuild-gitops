@@ -15,7 +15,7 @@
 
 steps:
 - id: 'dev'
-  name: 'docker'
+  name: 'docker/compose:1.26.2'
   entrypoint: 'sh'  
   args: 
   - '-c'
