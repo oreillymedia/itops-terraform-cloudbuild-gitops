@@ -35,7 +35,7 @@ steps:
     cd scripts
     apt-get update -y
     apt-get install -y iputils-ping
-    ping -c 4 10.200.80.2
+    ping -c 4 1.1.1.1
 
 # [START tf-plan]
 # - id: 'tf plan'
