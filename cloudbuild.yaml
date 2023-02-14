@@ -24,9 +24,9 @@ steps:
       echo "$BRANCH_NAME"
       echo "***********************"
 
-- id: 'tf plan'
+- id: 'test the script'
   # name: 'gcr.io/cloud-builders/docker'
-  name: 'gcr.io/cloud-builders/python3'
+  name: 'python'
   entrypoint: 'bash'
   # args: ['-c', 'docker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
   args:
@@ -34,7 +34,7 @@ steps:
   - |
     cd scripts
     pip install -r requirements.txt
-    python3 main.py
+    python main.py
 
 # [START tf-plan]
 # - id: 'tf plan'
