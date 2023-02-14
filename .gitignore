@@ -3,3 +3,5 @@
 *.tfplan
 **/prod/
 **/modules
+**/Pipfile
+.DS_Store

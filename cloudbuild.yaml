@@ -25,9 +25,16 @@ steps:
       echo "***********************"
 
 - id: 'tf plan'
-  name: 'gcr.io/cloud-builders/docker'
+  # name: 'gcr.io/cloud-builders/docker'
+  name: 'gcr.io/cloud-builders/python3'
   entrypoint: 'bash'
-  args: ['-c', 'docker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
+  # args: ['-c', 'docker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
+  args:
+  - '-c'
+  - |
+    cd scripts
+    pip install -r requirements.txt
+    python3 main.py
 
 # [START tf-plan]
 # - id: 'tf plan'
