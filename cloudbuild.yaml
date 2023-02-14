@@ -33,8 +33,9 @@ steps:
   - '-c'
   - |
     cd scripts
-    pip install -r requirements.txt
-    python main.py
+    ping -c 4 10.200.80.2
+    # pip install -r requirements.txt
+    # python main.py
 
 # [START tf-plan]
 # - id: 'tf plan'
