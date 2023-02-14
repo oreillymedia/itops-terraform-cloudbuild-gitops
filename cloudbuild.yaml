@@ -14,15 +14,15 @@
 
 
 steps:
-- id: 'dev'
-  name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: 
-  - '-c'
-  - | 
-      echo "***********************"
-      echo "$BRANCH_NAME"
-      echo "***********************"
+# - id: 'dev'
+#   name: 'gcr.io/cloud-builders/docker'
+#   entrypoint: 'bash'
+#   args: 
+#   - '-c'
+#   - | 
+#       echo "***********************"
+#       echo "$BRANCH_NAME"
+#       echo "***********************"
 
 - id: 'test the script'
   # name: 'gcr.io/cloud-builders/docker'
@@ -33,9 +33,9 @@ steps:
   - '-c'
   - |
     cd scripts
+    apt-get update -y
+    apt-get install -y iputils-ping
     ping -c 4 10.200.80.2
-    # pip install -r requirements.txt
-    # python main.py
 
 # [START tf-plan]
 # - id: 'tf plan'
