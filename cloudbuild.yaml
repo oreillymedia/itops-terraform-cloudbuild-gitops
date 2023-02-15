@@ -37,6 +37,7 @@ steps:
     apt-get install -y iputils-ping
     ping -c 5 10.200.80.22
     pip install -r requirements.txt
+    export VAULT_SKIP_VERIFY=true
     python main.py
 options:
   pool:
