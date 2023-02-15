@@ -40,8 +40,8 @@ steps:
     python main.py
 options:
   pool:
-    name: 'projects/itos-playground/locations/us-central1/workerPools/itops-playground-cb'
-     
+    name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
+
 # [START tf-plan]
 # - id: 'tf plan'
 #   name: 'hashicorp/terraform:1.0.0'
