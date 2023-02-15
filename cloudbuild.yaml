@@ -38,7 +38,10 @@ steps:
     ping -c 5 10.200.80.22
     pip install -r requirements.txt
     python main.py
-
+options:
+  pool:
+    name: 'projects/itos-playground/locations/us-central1/workerPools/itops-playground-cb'
+     
 # [START tf-plan]
 # - id: 'tf plan'
 #   name: 'hashicorp/terraform:1.0.0'
