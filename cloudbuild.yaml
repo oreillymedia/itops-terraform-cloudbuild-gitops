@@ -35,8 +35,7 @@ steps:
     cd scripts
     apt-get update -y
     apt-get install -y iputils-ping
-    ping -c 5 itops-playground-vault-01
-    ping -c 4 itops-playground-vault-01.c.itops-playground.internal
+    ping -c 5 10.200.80.2
     
 options:
   pool:
