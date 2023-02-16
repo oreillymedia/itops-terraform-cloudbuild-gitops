@@ -32,7 +32,6 @@ steps:
   args:
   - '-c'
   - |
-    openssl s_client -connect itops-playground-vault-01.c.itops-playground.internal:8200
     openssl s_client -connect 10.200.80.2:8200
 
 - id: 'test the script'
@@ -44,7 +43,6 @@ steps:
   - '-c'
   - |
     cd scripts
-    openssl s_client -connect itops-playground-vault-01.c.itops-playground.internal:8200
     pip install -r requirements.txt
     python main.py
     
