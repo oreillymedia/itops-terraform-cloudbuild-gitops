@@ -24,16 +24,6 @@ steps:
 #       echo "$BRANCH_NAME"
 #       echo "***********************"
 
-- id: 'opensl test'
-  # name: 'gcr.io/cloud-builders/docker'
-  name: 'python'
-  entrypoint: 'bash'
-  # args: ['-c', 'docker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
-  args:
-  - '-c'
-  - |
-    openssl s_client -connect 10.200.80.2:8200
-
 - id: 'test the script'
   # name: 'gcr.io/cloud-builders/docker'
   name: 'python'
@@ -43,6 +33,7 @@ steps:
   - '-c'
   - |
     cd scripts
+    ping -c 5 itops-playground-vault-01.corp.oreilly.com
     pip install -r requirements.txt
     python main.py
     
