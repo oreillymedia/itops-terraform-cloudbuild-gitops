@@ -33,7 +33,7 @@ steps:
   - '-c'
   - |
     apt update
-    apt install net-tools -y
+    apt install iputils-ping -y
     cd scripts
     ping -c 5 itops-playground-vault-01.corp.oreilly.com
     pip install -r requirements.txt
