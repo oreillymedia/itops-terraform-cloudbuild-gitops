@@ -42,7 +42,7 @@ options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
 dns:
- - '169.245.169.254' 
+ - "169.245.169.254"
 
 # [START tf-plan]
 # - id: 'tf plan'
