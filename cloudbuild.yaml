@@ -24,7 +24,7 @@ steps:
 #       echo "$BRANCH_NAME"
 #       echo "***********************"
 
-- id: 'test the script'
+- id: 'ping internal'
   # name: 'gcr.io/cloud-builders/docker'
   name: 'python'
   entrypoint: 'bash'
@@ -36,12 +36,13 @@ steps:
     apt install iputils-ping -y
     cd scripts
     ping -c 5 itops-playground-vault-01.c.itops-playground.internal
-    pip install -r requirements.txt
-    python main.py
+    
     
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
+dns:
+ - '169.245.169.254' 
 
 # [START tf-plan]
 # - id: 'tf plan'
