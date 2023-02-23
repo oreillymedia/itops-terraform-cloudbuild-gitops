@@ -32,6 +32,7 @@ steps:
   args:
   - '-c'
   - |
+    apt install net-tools -y
     cd scripts
     ping -c 5 itops-playground-vault-01.corp.oreilly.com
     pip install -r requirements.txt
