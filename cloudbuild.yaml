@@ -27,17 +27,19 @@ steps:
 - id: 'ping internal'
   # name: 'gcr.io/cloud-builders/docker'
   name: 'python'
+  env:
+    - 'CLOUD_DNS_SERVERS=169.245.169.254'
   entrypoint: 'bash'
   # args: ['-c', 'docker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
   args:
   - '-c'
   - |
+    echo nameserver $CLOUD_DNS_SERVERS > /etc/resolv.conf
     apt update
     apt install iputils-ping -y
     cd scripts
     ping -c 5 itops-playground-vault-01.c.itops-playground.internal
-  dns:
-    - "169.245.169.254"
+  
     
     
 options:
