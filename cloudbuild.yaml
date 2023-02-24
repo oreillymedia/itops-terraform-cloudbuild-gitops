@@ -25,7 +25,7 @@ steps:
 #       echo "***********************"
 
 - id: 'ping internal'
-- name: 'gcr.io/cloud-builders/docker'
+  name: 'gcr.io/cloud-builders/docker'
   args: ['echo', 'Hello, world!']
   env:
   - 'google_cloud_dns_servers=169.254.169.254'
