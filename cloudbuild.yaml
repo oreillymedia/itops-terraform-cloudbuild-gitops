@@ -40,6 +40,7 @@ steps:
     apt install iputils-ping -y
     echo dns server is $google_cloud_dns_servers
     echo nameserver $google_cloud_dns_servers > /etc/resolv.conf
+    cat /etc/resolv.conf
     ping -c 5 itops-playground-vault-01.c.itops-playground.internal
   #   cd scripts
   #   ping -c 5 itops-playground-vault-01.c.itops-playground.internal
