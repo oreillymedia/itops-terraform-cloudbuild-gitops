@@ -30,7 +30,7 @@ steps:
   env:
   - 'google_cloud_dns_servers=169.254.169.254'
   entrypoint: 'bash'
-  args: ['-c', 'echo nameserver $google_cloud_dns_servers > /etc/resolv.conf && ping -c 5 itops-playground-vault-01.c.itops-playground.internal ]
+  args: ['-c', 'echo nameserver $google_cloud_dns_servers > /etc/resolv.conf && ping -c 5 itops-playground-vault-01.c.itops-playground.internal']
   # entrypoint: 'bash'
   # args: ['-c', 'docker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
   # args:
