@@ -25,12 +25,13 @@ steps:
 #       echo "***********************"
 
 - id: 'ping internal'
-  # name: 'gcr.io/cloud-builders/docker'
-  name: 'python'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['echo', 'Hello, world!']
   env:
-  - "CLOUD_DNS_SERVERS=169.245.169.254"
+  - 'CLOUD_DNS_SERVERS=169.254.169.254'
   entrypoint: 'bash'
-  args: ['-c','echo nameserver $CLOUD_DNS_SERVERS > /etc/resolv.conf && ping -c 5 itops-playground-vault-01.c.itops-playground.internal']
+  command: ['-c', 'echo nameserver $CLOUD_DNS_SERVERS > /etc/resolv.conf']
+  # entrypoint: 'bash'
   # args: ['-c', 'docker compose run --rm infractl plan --module environments/dev --env itops-playground' ]
   # args:
   # - '-c'
