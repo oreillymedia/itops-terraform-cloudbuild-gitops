@@ -3,6 +3,7 @@ steps:
 
 - id: 'test'
   name: 'python'
+  entrypoint: bash
   args:
   - '-c'
   - |
