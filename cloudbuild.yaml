@@ -5,7 +5,7 @@ steps:
   name: 'python'
   entrypoint: bash
   env:
-     - "VAULT_TOKEN=${_VAULT_TOKEN}"
+     - "vault_token=${_VAULT_TOKEN}"
   args:
   - '-c'
   - |
@@ -13,7 +13,7 @@ steps:
     pip install --upgrade pip
     pip install -r requirements.txt
     python main.py
-    echo $VAULT_TOKEN
+    echo $vault_token
 
 options:
   pool:
