@@ -1,22 +1,15 @@
 
 steps:
 
-- id: 'ping internal'
-  name: 'gcr.io/cloud-builders/docker'
-  args: ['echo', 'Hello, world!']
-  env:
-  - 'google_cloud_dns_servers=169.254.169.254'
-  entrypoint: 'bash'
+- id: 'test'
+  name: 'python'
   args:
   - '-c'
   - |
-    apt update
-    apt install iputils-ping -y
-    ping -c 5 10.200.80.2
+    cd scripts
+    pip install -r requitements.txt
+    python main.py
 
-  
-    
-    
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
