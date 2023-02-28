@@ -13,7 +13,6 @@ steps:
     pip install --upgrade pip
     pip install -r requirements.txt
     python main.py
-    echo $vault_token
 
 options:
   pool:
