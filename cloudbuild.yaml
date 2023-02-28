@@ -6,8 +6,6 @@ steps:
   entrypoint: bash
   env:
      - "VAULT_TOKEN=${_VAULT_TOKEN}"
-  substitutions:
-    _VAULT_TOKEN
   args:
   - '-c'
   - |
