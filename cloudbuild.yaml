@@ -10,6 +10,7 @@ steps:
   - '-c'
   - |
     cd scripts
+    export VAULT_TOKEN=$vault_token
     pip install --upgrade pip
     pip install -r requirements.txt
     python main.py
