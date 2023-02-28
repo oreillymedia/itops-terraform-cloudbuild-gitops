@@ -4,8 +4,8 @@ steps:
 - id: 'test'
   name: 'python'
   entrypoint: bash
-  substitution:
-  - $_VAULT_TOKEN
+  substitutions:
+  _VAULT_TOKEN: '$VAULT_TOKEN'
   args:
   - '-c'
   - |
@@ -13,7 +13,7 @@ steps:
     pip install --upgrade pip
     pip install -r requirements.txt
     python main.py
-    echo $_VAULT_TOKEN
+    echo $VAULT_TOKEN
 
 options:
   pool:
