@@ -2,19 +2,16 @@
 steps:
 
 - id: 'test'
-  name: 'python'
+  # name: 'python'
+  name: gcr.io/common-build/infractl:latest
   entrypoint: bash
   env:
      - "vault_token=${_VAULT_TOKEN}"
   args:
   - '-c'
   - |
-    cd scripts
     export VAULT_TOKEN=$vault_token
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    python main.py
-
+    docker compose run --rm infractl terraform plan --module terraform/environments/dev --env itops-playground
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
