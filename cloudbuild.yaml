@@ -4,7 +4,7 @@ steps:
 - id: 'test'
   name: 'python'
   entrypoint: bash
-  subtitutions:
+  substitution:
   - $_VAULT_TOKEN
   args:
   - '-c'
