@@ -10,7 +10,7 @@ steps:
   - '-c'
   - |
     export VAULT_TOKEN=$vault_token
-    docker compose run --rm infractl terraform plan --module terraform/environment/dev --env itops-playground
+    infractl terraform plan --module terraform/environment/dev --env itops-playground
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
