@@ -3,7 +3,7 @@ steps:
 
 - id: 'test'
   # name: 'python'
-  name: gcr.io/common-build/infractl:latest
+  name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
      - "vault_token=${_VAULT_TOKEN}"
