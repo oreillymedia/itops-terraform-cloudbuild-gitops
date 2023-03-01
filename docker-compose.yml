@@ -1,7 +1,7 @@
 services:
   infractl:
     entrypoint: infractl
-    image: gcr.io/common-build/infractl:latest
+    image: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
     networks:
       default: {}
     tty: true
