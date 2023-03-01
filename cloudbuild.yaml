@@ -1,9 +1,8 @@
 
 steps:
 
-- id: 'test'
-  # name: 'python'
-  name: gcr.io/common-build/infractl:latest
+- id: 'buid tf'
+  name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
      - "vault_token=${_VAULT_TOKEN}"
@@ -11,7 +10,7 @@ steps:
   - '-c'
   - |
     export VAULT_TOKEN=$vault_token
-    docker compose run --rm infractl terraform plan --module terraform/environments/dev --env itops-playground
+    docker compose run --rm infractl terraform plan --module terraform/environment/dev --env itops-playground
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
