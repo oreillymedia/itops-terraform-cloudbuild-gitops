@@ -12,8 +12,7 @@ steps:
   - '-c'
   - |
     export VAULT_TOKEN=$vault_token
-    infractl terraform --help
-    infractl terraform plan --module core --env itops-playground --upgrade-on-init --force
+    infractl terraform plan --module core --env itops-playground --source /workspace/terraform --upgrade-on-init --force
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
