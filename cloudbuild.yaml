@@ -12,10 +12,9 @@ steps:
   - '-c'
   - |
     export VAULT_TOKEN=$vault_token
-    cd /workspace
+    mv /infractl/terraform /infractl/terraform-orig
+    ln -s /workspace/terraform /infractl/terraform
     infractl terraform plan --module core --env itops-playground --upgrade-on-init --force
-  volumes:
-  - /workspace/terraform:/infractl/terraform
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
