@@ -11,8 +11,8 @@ steps:
   args:
   - '-c'
   - |
-    export VAULT_TOKEN="$vault_token"
-    echo $vault_token
+    mkdir /infractl/.vault
+    echo ITOPS_PLAYGROUND_VAULT_TOKEN="$vault_token" > /infractl/.vault/.env
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
