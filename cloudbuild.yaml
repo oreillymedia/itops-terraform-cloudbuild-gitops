@@ -12,6 +12,7 @@ steps:
   - '-c'
   - |
     export VAULT_TOKEN=$vault_token
+    echo $VAULT_TOKEN
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
