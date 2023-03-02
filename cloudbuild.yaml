@@ -17,7 +17,7 @@ steps:
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
-    infractl terraform plan --module core --env itops-playground --upgrade-on-init --force
+    infractl --vault-token "$vault_token" terraform plan --module core --env itops-playground --upgrade-on-init --force
 substitutions:
   _VAULT_TOKEN: ""
 options:
