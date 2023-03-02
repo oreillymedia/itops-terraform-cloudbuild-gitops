@@ -14,6 +14,7 @@ steps:
     export VAULT_TOKEN=$vault_token
     mv /infractl/terraform /infractl/terraform-orig
     mv /workspace/terraform /infractl/terraform
+    cd /infractl
     infractl terraform plan --module core --env itops-playground --upgrade-on-init --force
 options:
   pool:
