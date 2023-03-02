@@ -1,0 +1,12 @@
+{
+    "global": {
+      "enable_logging": false,
+      "zone":"us-central1-c"
+    },
+    "itops-playground": {
+        "vpc_name": "itops-playground",
+        "region": "us-central",
+        "vm_name": "alain-test-vm",
+        "service_type": "non-important-test-vm"
+    }
+}
