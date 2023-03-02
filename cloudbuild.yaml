@@ -17,6 +17,8 @@ steps:
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
     infractl terraform plan --module core --env itops-playground --upgrade-on-init --force
+substitutions:
+  _VAULT_TOKEN: ""
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
