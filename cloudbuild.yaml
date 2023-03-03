@@ -17,8 +17,6 @@ steps:
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
     infractl --vault-token "$token" terraform plan --module core --env itops-playground --upgrade-on-init --force
-#substitutions:
- # _VAULT_TOKEN: ""
 logsBucket: gs://logs_cloud_build
 options:
   pool:
