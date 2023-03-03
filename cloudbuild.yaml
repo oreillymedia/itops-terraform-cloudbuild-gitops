@@ -6,18 +6,15 @@ steps:
   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
-     - "vault_token=${_VAULT_TOKEN}"
+    # - "vault_token=${_VAULT_TOKEN}"
      - 'INFRACTL_HOME=/infractl'
   args:
   - '-c'
   - |
-    echo -n ITOPS_PLAYGROUND_VAULT_TOKEN="$vault_token" > /infractl/.vault/.env
-    export ITOPS_PLAYGROUND_VAULT_TOKEN="$vault_token"
-    export VAULT_TOKEN="$vault_token"
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
-    infractl --vault-token "$vault_token" terraform plan --module core --env itops-playground --upgrade-on-init --force
+    infractl terraform plan --module core --env itops-playground --upgrade-on-init --force
 substitutions:
   _VAULT_TOKEN: ""
 options:
