@@ -17,8 +17,8 @@ steps:
     infractl terraform plan --module core --env itops-playground --upgrade-on-init --force
 #substitutions:
  # _VAULT_TOKEN: ""
+logsBucket: gs://logs_cloud_build
 options:
-  logging: CLOUD_LOGGING_ONLY
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
   
