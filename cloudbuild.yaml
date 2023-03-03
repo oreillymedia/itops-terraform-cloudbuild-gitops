@@ -30,8 +30,8 @@ steps:
   args:
   - '-c'
   - |
-    export INFRACTL_VAULT_TOKEN=$vault_token
-    
+    export ${INFRACTL_VAULT_TOKEN}=$vault_token
+    echo ${INFRACTL_VAULT_TOKEN}
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
