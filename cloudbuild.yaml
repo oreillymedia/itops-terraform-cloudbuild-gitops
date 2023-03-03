@@ -6,15 +6,17 @@ steps:
   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
-    # - "vault_token=${_VAULT_TOKEN}"
+     #- "vault_ad=${_VAULT_TOKEN}"
      - 'INFRACTL_HOME=/infractl'
   args:
   - '-c'
   - |
+    token=`vault read gcp/static-account/tf-token/token`
+    echo $token
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
-    infractl terraform plan --module core --env itops-playground --upgrade-on-init --force
+    infractl --vault-token "$token" terraform plan --module core --env itops-playground --upgrade-on-init --force
 #substitutions:
  # _VAULT_TOKEN: ""
 logsBucket: gs://logs_cloud_build
