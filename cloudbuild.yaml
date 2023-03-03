@@ -1,17 +1,41 @@
 
+# steps:
+
+# - id: 'buid tf'
+#   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
+#   entrypoint: bash
+#   env:
+#      - "vault_token=${_VAULT_TOKEN}"
+#   args:
+#   - '-c'
+#   - |
+#     export INFRACTL_VAULT_TOKEN=$vault_token
+#     infractl terraform plan --module terraform/environment/dev --env itops-playground
+# options:
+#   pool:
+#     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
+  
 steps:
 
-- id: 'buid tf'
+- id: 'test'
+  # name: 'python'
   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
-     - "vault_token=${_VAULT_TOKEN}"
+     #- "vault_ad=${_VAULT_TOKEN}"
+     - 'INFRACTL_HOME=/infractl'
   args:
   - '-c'
   - |
-    export INFRACTL_VAULT_TOKEN=$vault_token
-    infractl terraform plan --module terraform/environment/dev --env itops-playground
+    token=`vault read gcp/static-account/tf-token/token`
+    echo $token
+    mv /infractl/terraform /infractl/terraform-orig
+    ln -s /workspace/terraform /infractl/terraform
+    cd /infractl
+    infractl --vault-token "$token" terraform plan --module core --env itops-playground --upgrade-on-init --force
+#substitutions:
+ # _VAULT_TOKEN: ""
+logsBucket: gs://logs_cloud_build
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
-  
