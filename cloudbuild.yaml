@@ -9,7 +9,7 @@ steps:
   args:
   - '-c'
   - |
-    export VAULT_TOKEN=$vault_token
+    export INFRACTL_VAULT_TOKEN=$vault_token
     infractl terraform plan --module terraform/environment/dev --env itops-playground
 options:
   pool:
