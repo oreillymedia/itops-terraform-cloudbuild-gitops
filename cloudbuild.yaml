@@ -22,15 +22,12 @@ steps:
   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
-     #- "vault_ad=${_VAULT_TOKEN}"
      - 'INFRACTL_HOME=/infractl'
-     - "vault_token=${_VAULT_TOKEN}"
-    #  token=`vault read gcp/static-account/tf-token/token`
-    # echo $token
+  substitutions:
+    _VAULT_TOKEN: "${INFRACTL_VAULT_TOKEN}"
   args:
   - '-c'
   - |
-    export ${INFRACTL_VAULT_TOKEN}=$vault_token
     echo ${INFRACTL_VAULT_TOKEN}
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
