@@ -24,16 +24,19 @@ steps:
   env:
      #- "vault_ad=${_VAULT_TOKEN}"
      - 'INFRACTL_HOME=/infractl'
+     - "vault_token=${_VAULT_TOKEN}"
+    #  token=`vault read gcp/static-account/tf-token/token`
+    # echo $token
   args:
   - '-c'
   - |
-    token=`vault read gcp/static-account/tf-token/token`
+    export INFRACTL_VAULT_TOKEN=$vault_token
     echo $token
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
     ls terraform
-    infractl --vault-token "$token" terraform plan --module environments/dev --env itops-playground --upgrade-on-init --force
+    infractl terraform plan --module environments/dev --env itops-playground --upgrade-on-init --force
 #substitutions:
  # _VAULT_TOKEN: ""
 logsBucket: gs://logs_cloud_build
