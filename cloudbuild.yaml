@@ -23,6 +23,8 @@ steps:
   entrypoint: bash
   env:
      - 'INFRACTL_HOME=/infractl'
+  
+  apiVersion: 'v1.0'
   substitutions:
     _VAULT_TOKEN: "${INFRACTL_VAULT_TOKEN}"
   args:
