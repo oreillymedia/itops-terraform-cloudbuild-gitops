@@ -30,13 +30,13 @@ steps:
   args:
   - '-c'
   - |
-    export INFRACTL_VAULT_TOKEN=$vault_token
+    export token=$vault_token
     echo $token
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
     ls terraform
-    infractl terraform plan --module environments/dev --env itops-playground --upgrade-on-init --force
+    infractl terraform plan --module environments/dev --env itops-playground --upgrade-on-init --force --vault-toke=$token
 #substitutions:
  # _VAULT_TOKEN: ""
 logsBucket: gs://logs_cloud_build
