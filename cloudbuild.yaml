@@ -7,10 +7,11 @@ steps:
   entrypoint: bash
   env:
      #- "vault_ad=${_VAULT_TOKEN}"
-     - 'INFRACTL_HOME=/infractl'
+     - 'INFRACTL_HOME=/infractl' 
+     - 'VAULT_ADDR=https://itops-playground-vault-01.corp.oreilly.com:8200'
   args:
   - '-c'
-  - |
+  - | 
     token=`vault read gcp/static-account/tf-token/token`
     echo $token
     mv /infractl/terraform /infractl/terraform-orig
