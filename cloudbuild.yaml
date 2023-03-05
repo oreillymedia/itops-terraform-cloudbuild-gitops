@@ -8,11 +8,9 @@ steps:
   env:
      #- "vault_ad=${_VAULT_TOKEN}"
      - 'INFRACTL_HOME=/infractl'
-     - 'VAULT_VERSION=1.12.2'
   args:
   - '-c'
   - |
-    curl https://releases.hashicorp.com/vault/$${VAULT_VERSION}/vault_$${VAULT_VERSION}_linux_amd64.zip | funzip - > /usr/bin/vault
     token=`vault read gcp/static-account/tf-token/token`
     echo $token
     mv /infractl/terraform /infractl/terraform-orig
