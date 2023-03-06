@@ -23,19 +23,16 @@ steps:
   entrypoint: bash
   env:
      - 'INFRACTL_HOME=/infractl'
-  
-  apiVersion: 'v1.0'
-  substitutions:
-    _VAULT_TOKEN: "${INFRACTL_VAULT_TOKEN}"
+     - "vault_token=${_VAULT_TOKEN}"
   args:
   - '-c'
   - |
-    echo ${INFRACTL_VAULT_TOKEN}
+    echo $vault_token
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
     ls terraform
-    infractl terraform plan --module environments/dev --env itops-playground --upgrade-on-init --force
+    infractl --vault-token=$vault_token terraform plan --module environments/dev --env itops-playground
 #substitutions:
  # _VAULT_TOKEN: ""
 logsBucket: gs://logs_cloud_build
