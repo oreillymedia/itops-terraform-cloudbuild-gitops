@@ -3,7 +3,7 @@ steps:
 - id: 'gcloud auth'
   name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: bash
-    args:
+  args:
   - '-c'
   - | 
     gcloud auth print-identity-token >/workspace/token
