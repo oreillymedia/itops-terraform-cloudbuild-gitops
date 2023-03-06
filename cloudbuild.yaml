@@ -33,6 +33,7 @@ steps:
     cd /infractl
     ls terraform
     infractl --vault-token=$vault_token terraform plan --module test-vm --env itops-playground --force
+    infractl --vault-token=$vault_token terraform apply --module test-vm --env itops-playground --force
 #substitutions:
  # _VAULT_TOKEN: ""
 # logsBucket: gs://logs_cloud_build
