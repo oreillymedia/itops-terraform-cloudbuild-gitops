@@ -23,7 +23,7 @@ steps:
     token=`cat /workspace/token`
     echo $token
     echo "10.200.80.2   itops-playground-vault-01.corp.oreilly.com" >> /etc/hosts
-    vault write -field=token auth/gcp/login     role="my-iam-role"      jwt="$token"
+    vault write -field=token auth/gcp/login     role="cloudbuild-role"      jwt="$token"
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
