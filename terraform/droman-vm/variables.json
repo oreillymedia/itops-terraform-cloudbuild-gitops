@@ -1,12 +1,13 @@
 {
     "global": {
       "enable_logging": false,
-      "zone":"us-central1-c"
+      "zone":"us-central1-c",
+      "machine_type": "e2-micro",
+      "disk_size": "50"
     },
     "itops-playground": {
         "vpc_name": "itops-playground",
         "region": "us-central",
-        "vm_name": "alain-test-vm",
-        "service_type": "non-important-test-vm"
+        "image_family": "itops-2004-base-image"
     }
 }

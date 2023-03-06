@@ -1,0 +1,11 @@
+{
+    "global": {
+      "enable_logging": false,
+      "zone":"us-central1-c"
+    },
+    "itops-playground": {
+        "vpc_name": "itops-playground",
+        "region": "us-central",
+        "image_family": "itops-2004-base-image"
+    }
+}

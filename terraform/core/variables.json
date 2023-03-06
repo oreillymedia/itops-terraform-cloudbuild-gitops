@@ -1,0 +1,118 @@
+{
+  "global": {
+    "enable_logging": false,
+    "zone": "us-central1-c"
+  },
+  "itops-prod": {
+    "vpcs": {
+      "itops-prod": {
+        "description": "",
+        "routing_mode": "REGIONAL",
+        "auto_create_subnetworks": false,
+        "vpc_peering": {
+          "peer-prod-to-core": {
+            "description": "VPC peering itops-prod -> itops-core",
+            "peer_network": "projects/itops-core/global/networks/itops-core"
+          }
+        }
+      }
+    },
+    "subnetworks": {
+      "itops-prod": {
+        "vpc_subnetwork_cidr_range": "10.200.48.0/22",
+        "vpc_name": "itops-prod",
+        "description": "",
+        "region": "us-west1"
+      },
+      "itops-prod-central": {
+        "vpc_subnetwork_cidr_range": "10.200.60.0/22",
+        "vpc_name": "itops-prod",
+        "description": "Main subnet for itops-prod VPC",
+        "region": "us-central1"
+      }
+    }
+  },
+  "itops-stage": {
+    "vpcs": {
+      "itops-stage": {
+        "description": "Stage Network for ITOPS GCP",
+        "routing_mode": "REGIONAL",
+        "auto_create_subnetworks": false,
+        "vpc_peering": {
+          "peer-stage-to-core": {
+            "description": "VPC peering itops-stage -> itops-core",
+            "peer_network": "projects/itops-core/global/networks/itops-core"
+          }
+        }
+      }
+    },
+    "subnetworks": {
+      "itops-stage": {
+        "vpc_subnetwork_cidr_range": "10.200.52.0/22",
+        "vpc_name": "itops-stage",
+        "description": "West subnet for the itops-stage VPC",
+        "region": "us-west1"
+      },
+      "itops-stage-central": {
+        "vpc_subnetwork_cidr_range": "10.200.56.0/22",
+        "vpc_name": "itops-stage",
+        "description": "Main subnet for the itops-stage VPC",
+        "region": "us-central1"
+      }
+    }
+  },
+  "itops-playground": {
+    "vpcs": {
+      "itops-playground": {
+        "description": "",
+        "routing_mode": "REGIONAL",
+        "auto_create_subnetworks": false,
+        "vpc_peering": {
+          "peer-playground-to-core": {
+            "description": "VPC peering itops-playground -> itops-core",
+            "peer_network": "projects/itops-core/global/networks/itops-core"
+          }
+        }
+      }
+    },
+    "subnetworks": {
+      "itops-playground-central": {
+        "vpc_subnetwork_cidr_range": "10.200.80.0/22",
+        "vpc_name": "itops-playground",
+        "description": "Main subnet for the itops-playground VPC",
+        "region": "us-central1"
+      }
+    }
+  },
+  "itops-core": {
+    "vpcs": {
+      "itops-core": {
+        "description": "Main VPC",
+        "routing_mode": "REGIONAL",
+        "auto_create_subnetworks": false,
+        "vpc_peering": {
+          "peer-core-playground": {
+            "description": "VPC peering itops-core -> itops-playground",
+            "peer_network": "projects/itops-playground/global/networks/itops-playground"
+          },
+          "peer-core-stage": {
+            "description": "VPC peering itops-core -> itops-stage",
+            "peer_network": "projects/itops-stage/global/networks/itops-stage"
+          },
+          "peer-core-prod": {
+            "description": "VPC peering itops-core -> itops-prod",
+            "peer_network": "projects/itops-prod-8140/global/networks/itops-prod"
+          }
+        }
+      }
+    },
+    "subnetworks": {
+      "itops-core-central": {
+        "vpc_subnetwork_cidr_range": "10.200.100.0/22",
+        "vpc_name": "itops-core",
+        "description": "Main subnet for the itops-core VPC",
+        "region": "us-central1"
+      }
+    }
+  }
+}
