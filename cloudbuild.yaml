@@ -7,7 +7,7 @@ steps:
   - '-c'
   - | 
     gcloud auth print-identity-token --impersonate-service-account="terraform@itops-playground.iam.gserviceaccount.com" \
-     --audiences="https://itops-playground-vault-01.corp.oreilly.com:8200/vault/cloudbuild-iam" >/workspace/token
+     --audiences="vault/cloudbuild-iam" --project=itops-playground  --include-email >/workspace/token
 
 - id: 'plan'
   # name: 'python'
@@ -22,7 +22,8 @@ steps:
   - | 
     token=`cat /workspace/token`
     echo "10.200.80.2   itops-playground-vault-01.corp.oreilly.com" >> /etc/hosts
-    vault write -field=token auth/gcp/login     role="cloudbuild-iam"      jwt="$token"
+    vc=`vault write -field=token auth/gcp/login     role="cloudbuild-iam"      jwt="$token"`
+    export VAULT_TOKEN="$vc"
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
