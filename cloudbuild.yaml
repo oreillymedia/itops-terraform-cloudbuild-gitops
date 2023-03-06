@@ -35,7 +35,7 @@ steps:
     infractl --vault-token=$vault_token terraform plan --module environments/dev --env itops-playground --force
 #substitutions:
  # _VAULT_TOKEN: ""
-logsBucket: gs://logs_cloud_build
+# logsBucket: gs://logs_cloud_build
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
