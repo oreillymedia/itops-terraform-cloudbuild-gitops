@@ -7,7 +7,7 @@ steps:
   - '-c'
   - | 
     gcloud auth print-identity-token --impersonate-service-account="terraform@itops-playground.iam.gserviceaccount.com" \
-     --audiences="https://itops-playground-vault-01.corp.oreilly.com:8200/cloudbuild-role" >/workspace/token
+     --audiences="https://itops-playground-vault-01.corp.oreilly.com:8200/vault/cloudbuild-role" >/workspace/token
 
 - id: 'plan'
   # name: 'python'
