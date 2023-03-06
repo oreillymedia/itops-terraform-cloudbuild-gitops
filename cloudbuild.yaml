@@ -1,7 +1,10 @@
 
 steps:
+- id: 'gcloud auth'
+  name: 'gcr.io/cloud-builders/gcloud'
+  args: ['gcloud auth print-identity-token >/workspace/token']
 
-- id: 'test'
+- id: 'plan'
   # name: 'python'
   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
@@ -12,9 +15,8 @@ steps:
   args:
   - '-c'
   - | 
-    apt -y update && apt -y install curl
-    jwt=`curl -H "Metadata-Flavor: Google" 'http://metadata/computeMetadata/v1/instance/service-accounts/default/identity?audience=https%3A%2F%2Fitops-playground-vault-01.corp.oreilly.com%3A8200'`
-    echo $$jwt
+    token=`cat /workspace/token`
+    echo $token
     echo "10.200.80.2   itops-playground-vault-01.corp.oreilly.com" >> /etc/hosts
     vault login -method=gcp role="cloudbuild-role"
     token=`vault read gcp/static-account/tf-token/token`
