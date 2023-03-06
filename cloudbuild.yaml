@@ -12,7 +12,6 @@ steps:
   args:
   - '-c'
   - | 
-    ping -c3 itops-playground-vault-01.corp.oreilly.com
     token=`vault read gcp/static-account/tf-token/token`
     echo $token
     mv /infractl/terraform /infractl/terraform-orig
