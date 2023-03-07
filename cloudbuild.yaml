@@ -14,20 +14,18 @@ steps:
   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
-     #- "vault_ad=${_VAULT_TOKEN}"
      - 'INFRACTL_HOME=/infractl' 
      - 'VAULT_ADDR=https://itops-playground-vault-01.corp.oreilly.com:8200'
   args:
   - '-c'
   - | 
-    token=`cat /workspace/token`
-    echo "10.200.80.2   itops-playground-vault-01.corp.oreilly.com" >> /etc/hosts
-    vc=`vault write -field=token auth/gcp/login     role="cloudbuild-iam"      jwt="$token"`
-    export VAULT_TOKEN="$vc"
+    echo '10.200.80.2   itops-playground-vault-01.corp.oreilly.com' >> /etc/hosts
+    token=$(cat /workspace/token)
+    vc=$(vault write -field=token auth/gcp/login     role="cloudbuild-iam"      jwt="$token")
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
-    infractl --vault-token "$token" terraform plan --module core --env itops-playground --upgrade-on-init --force
+    infractl --vault-token "$vc" terraform plan --module core --env itops-playground --upgrade-on-init --force
 logsBucket: gs://logs_cloud_build
 options:
   pool:
