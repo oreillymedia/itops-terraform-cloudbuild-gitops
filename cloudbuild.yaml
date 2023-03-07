@@ -9,7 +9,6 @@ steps:
   args:
   - '-c'
   - | 
-    echo '10.200.80.2   itops-playground-vault-01.corp.oreilly.com' >> /etc/hosts
     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
      --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
     vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
