@@ -1,16 +1,6 @@
 
 steps:
-- id: 'gcloud auth'
-  name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: bash
-  args:
-  - '-c'
-  - | 
-    gcloud auth print-identity-token --impersonate-service-account="terraform@itops-playground.iam.gserviceaccount.com" \
-     --audiences="vault/cloudbuild-iam" --project=itops-playground  --include-email >/workspace/token
-
 - id: 'plan'
-  # name: 'python'
   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
@@ -20,8 +10,9 @@ steps:
   - '-c'
   - | 
     echo '10.200.80.2   itops-playground-vault-01.corp.oreilly.com' >> /etc/hosts
-    token=$(cat /workspace/token)
-    vc=$(vault write -field=token auth/gcp/login     role="cloudbuild-iam"      jwt="$token")
+    token="$(gcloud auth print-identity-token --impersonate-service-account='773212910489@cloudbuild.gserviceaccount.com' \
+     --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
+    vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
