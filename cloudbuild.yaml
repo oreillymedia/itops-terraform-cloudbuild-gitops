@@ -4,7 +4,6 @@ steps:
   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
-     - 'TAG_NAME=$TAG_NAME'
      - 'INFRACTL_HOME=/infractl' 
      - 'VAULT_ADDR=https://itops-playground-vault-01.corp.oreilly.com:8200'
   args:
@@ -16,7 +15,7 @@ steps:
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
-    infractl --vault-token "$vc" terraform plan --module $TAG_NAME --env itops-playground --upgrade-on-init --force
+    infractl --vault-token "$vc" terraform plan --module core --env itops-playground --upgrade-on-init --force
 logsBucket: gs://logs_cloud_build
 options:
   pool:
