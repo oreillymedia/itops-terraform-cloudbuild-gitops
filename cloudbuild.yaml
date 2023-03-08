@@ -15,7 +15,7 @@ steps:
     mv /infractl/terraform /infractl/terraform-orig
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
-    infractl --vault-token "$vc" terraform plan --module core --env itops-playground --upgrade-on-init --force
+    infractl --vault-token "$vc" terraform plan --module test-vm --env itops-playground --upgrade-on-init --force
 logsBucket: gs://logs_cloud_build
 options:
   pool:
