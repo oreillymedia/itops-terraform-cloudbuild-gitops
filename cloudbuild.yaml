@@ -21,4 +21,3 @@ logsBucket: gs://logs_cloud_build
 options:
   pool:
     name: 'projects/itops-playground/locations/us-central1/workerPools/itops-playground-cb'
-  
