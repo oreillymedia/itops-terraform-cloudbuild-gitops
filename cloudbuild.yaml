@@ -9,34 +9,31 @@ steps:
      - 'TAG_NAME=$TAG_NAME'
   args:
   - '-c'
-  - | 
-    export tag_name=${TAG_NAME}
-    echo "the tag name is below"
-    echo $REF_NAME
-#     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
-#      --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
-#     vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
-#     mv /infractl/terraform /infractl/terraform-orig
-#     ln -s /workspace/terraform /infractl/terraform
-#     cd /infractl
-#     infractl --vault-token "$vc" terraform plan --module test-vm --env itops-playground --upgrade-on-init --force
+  - |
+    token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
+     --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
+    vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
+    mv /infractl/terraform /infractl/terraform-orig
+    ln -s /workspace/terraform /infractl/terraform
+    cd /infractl
+    infractl --vault-token "$vc" terraform plan --module test-vm --env itops-playground --upgrade-on-init --force
 
-# - id: 'terraform apply'
-#   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
-#   entrypoint: bash
-#   env:
-#      - 'INFRACTL_HOME=/infractl' 
-#      - 'VAULT_ADDR=https://itops-playground-vault-01.corp.oreilly.com:8200'
-#   args:
-#   - '-c'
-#   - | 
-#     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
-#      --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
-#     vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
-#     mv /infractl/terraform /infractl/terraform-orig
-#     ln -s /workspace/terraform /infractl/terraform
-#     cd /infractl
-#     infractl --vault-token "$vc" terraform apply --module test-vm --env itops-playground --upgrade-on-init --force
+- id: 'terraform apply'
+  name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
+  entrypoint: bash
+  env:
+     - 'INFRACTL_HOME=/infractl' 
+     - 'VAULT_ADDR=https://itops-playground-vault-01.corp.oreilly.com:8200'
+  args:
+  - '-c'
+  - | 
+    token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
+     --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
+    vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
+    mv /infractl/terraform /infractl/terraform-orig
+    ln -s /workspace/terraform /infractl/terraform
+    cd /infractl
+    infractl --vault-token "$vc" terraform apply --module test-vm --env itops-playground --upgrade-on-init --force
 
 logsBucket: gs://logs_cloud_build
 options:
