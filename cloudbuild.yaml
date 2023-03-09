@@ -13,7 +13,7 @@ steps:
     export tag_name=${TAG_NAME}
     echo "the tag name is below"
     echo $_TAG_NAME
-    echo $BRANCH
+    echo $BRANCH_NAME
     echo $INFRACTL_HOME
 
 #     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
