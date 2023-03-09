@@ -1,6 +1,6 @@
 
 steps:
-- id: 'plan'
+- id: 'terraform plan'
   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
@@ -26,8 +26,13 @@ steps:
   args:
   - '-c'
   - | 
-    ls -la /workspace/terraform
-    ls -la /workspace/terraform/test-vm/plan
+    token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
+     --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
+    vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
+    mv /infractl/terraform /infractl/terraform-orig
+    ln -s /workspace/terraform /infractl/terraform
+    cd /infractl
+    infractl --vault-token "$vc" terraform apply --module test-vm --env itops-playground --upgrade-on-init --force
 
 logsBucket: gs://logs_cloud_build
 options:
