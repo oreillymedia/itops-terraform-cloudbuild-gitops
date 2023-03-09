@@ -10,7 +10,9 @@ steps:
   args:
   - '-c'
   - | 
-    echo $TAG_NAME
+    export tag_name=${TAG_NAME}
+    echo "the tag name is below"
+    echo $tag_name
 #     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
 #      --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
 #     vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
