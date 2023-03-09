@@ -26,9 +26,9 @@ steps:
   args:
   - '-c'
   - | 
-    ls -la ln -s /workspace/terraform
-    ls -la ln -s /workspace/terraform/test-vm/plan
-    
+    ls -la /workspace/terraform
+    ls -la /workspace/terraform/test-vm/plan
+
 logsBucket: gs://logs_cloud_build
 options:
   pool:
