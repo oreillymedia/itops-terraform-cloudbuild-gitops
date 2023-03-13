@@ -6,10 +6,12 @@ steps:
   env:
      - 'INFRACTL_HOME=/infractl' 
      - 'VAULT_ADDR=https://itops-playground-vault-01.corp.oreilly.com:8200'
+     - COMMIT_MESSAGE=$COMMIT_MESSAGE
   args:
   - '-c'
   - |
     echo $COMMIT_MESSAGE
+    echo $COMMIT_SHA
 #     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
 #      --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
 #     vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
