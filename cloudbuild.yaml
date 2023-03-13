@@ -6,7 +6,6 @@ steps:
   env:
      - 'INFRACTL_HOME=/infractl' 
      - 'VAULT_ADDR=https://itops-playground-vault-01.corp.oreilly.com:8200'
-     - COMMIT_MESSAGE=$COMMIT_MESSAGE
   args:
   - '-c'
   - |
