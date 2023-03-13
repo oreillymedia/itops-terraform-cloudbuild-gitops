@@ -10,7 +10,6 @@ steps:
   args:
   - '-c'
   - |
-    echo $COMMIT_MESSAGE
     echo $COMMIT_SHA
 #     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
 #      --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
