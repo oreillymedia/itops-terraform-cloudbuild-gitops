@@ -10,7 +10,8 @@ steps:
   - '-c'
   - |
     git log -n 1 >> commit_message.txt
-    cat commit_message.txt
+    export module=$(cat commit_message.txt | grep 'module:' | cut -d' ' -f2)
+    echo $module
 #     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
 #      --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
 #     vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
