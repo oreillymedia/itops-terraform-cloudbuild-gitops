@@ -9,7 +9,8 @@ steps:
   args:
   - '-c'
   - |
-    git log -n 1
+    git log -n 1 >> commit_message.txt
+    cat commit_message.txt
 #     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
 #      --audiences='vault/cloudbuild-iam' --project=itops-playground  --include-email)"
 #     vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
