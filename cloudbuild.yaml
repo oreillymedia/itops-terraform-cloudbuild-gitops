@@ -10,9 +10,12 @@ steps:
   - '-c'
   - |
     . <(git log -n1 | egrep '^\s+\w+\:\s\w+' | sed -Eze 's/\s+(\w+):\s(\S+)/: \${\1=\2} export \1;/g')
+    
     if [ -z "$module"] || [-z "$env"]; then
       echo 'missing required entries: module and/or env, check the documentation'
       exit 1
+    else
+     echo "all variables set!"                               
     fi
 
 #     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
