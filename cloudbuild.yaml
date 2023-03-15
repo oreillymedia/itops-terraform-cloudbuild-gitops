@@ -14,7 +14,6 @@ steps:
       echo 'missing required entries: module and/or env, check the documentation'
       exit 1                              
     fi
-
     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
      --audiences='vault/cloudbuild-iam' --project="$env"  --include-email)"
     vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
