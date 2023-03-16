@@ -45,7 +45,7 @@ steps:
     ln -s /workspace/terraform /infractl/terraform
     cd /infractl
     infractl --vault-token "$vc" terraform apply --module "$module" --env "$env" --upgrade-on-init --force
-  aproval:
+  approval:
     description: "Look at the plan output and action accordingle"
 
 logsBucket: gs://logs_cloud_build
