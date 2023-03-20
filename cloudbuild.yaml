@@ -40,11 +40,10 @@ steps:
          echo 'missing required entries: module and/or env, check the documentation'
          exit 1                              
       fi
-
       echo "***************************** TERRAFORM APPLY *******************************"
       echo "************ "Runing terraform apply on '$BRANCH_NAME' branch."**************"
       echo "*****************************************************************************"
-      
+
       token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
       --audiences='vault/cloudbuild-iam' --project="$env"  --include-email)"
       vc="$(vault write -field=token auth/gcp/login     role='cloudbuild-iam'      jwt=$token)"
@@ -57,8 +56,6 @@ steps:
       echo "Terraform apply runs only on branch main - skipping apply on '$BRANCH_NAME' branch."
       echo "************************************************************************************"
     fi
-    
-
 logsBucket: gs://logs_cloud_build
 options:
   pool:
