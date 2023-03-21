@@ -59,30 +59,31 @@ steps:
   args:
   - '-c'
   - |
-    . <(git log -n1 | egrep '^\s+\w+\:\s\w+' | sed -Eze 's/\s+(\w+):\s(\S+)/: \${\1=\2} export \1;/g')
+    echo $pull_request.head.ref
+  #   . <(git log -n1 | egrep '^\s+\w+\:\s\w+' | sed -Eze 's/\s+(\w+):\s(\S+)/: \${\1=\2} export \1;/g')
     
-    if [ -z "$module" ] || [ -z "$env" ]; then
-         echo 'missing required entries: module and/or env, check the documentation'
-         exit 1                              
-    fi
+  #   if [ -z "$module" ] || [ -z "$env" ]; then
+  #        echo 'missing required entries: module and/or env, check the documentation'
+  #        exit 1                              
+  #   fi
 
-    if [ $(pull_request.head.ref) == 'main' ] && [ $(pull_request.state) == 'APPROVED' ]; then
-          echo "***************************** TERRAFORM APPLY *******************************"
-          echo "************ "Runing terraform apply on '$BRANCH_NAME' branch."**************"
-          echo "*****************************************************************************"
-          token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
-          --audiences='vault/cloudbuild-iam' --project="$env"  --include-email)"
-          vc="$(vault write -field=token auth/gcp/login role='cloudbuild-iam' jwt="$token")"
-          mv /infractl/terraform /infractl/terraform-orig
-          ln -s /workspace/terraform /infractl/terraform
-          cd /infractl
-          infractl --vault-token "$vc" terraform apply --module "$module" --env "$env" --upgrade-on-init --force
-    else
-          echo "***************************** SKIPPING APPLYING ************************************"
-          echo "Terraform apply runs only on branch main - skipping apply on '$BRANCH_NAME' branch."
-          echo "************************************************************************************"
-    fi
-    
+  #   if [ $(pull_request.head.ref) == 'main' ] && [ $(pull_request.state) == 'APPROVED' ]; then
+  #         echo "***************************** TERRAFORM APPLY *******************************"
+  #         echo "************ "Runing terraform apply on '$BRANCH_NAME' branch."**************"
+  #         echo "*****************************************************************************"
+  #         token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
+  #         --audiences='vault/cloudbuild-iam' --project="$env"  --include-email)"
+  #         vc="$(vault write -field=token auth/gcp/login role='cloudbuild-iam' jwt="$token")"
+  #         mv /infractl/terraform /infractl/terraform-orig
+  #         ln -s /workspace/terraform /infractl/terraform
+  #         cd /infractl
+  #         infractl --vault-token "$vc" terraform apply --module "$module" --env "$env" --upgrade-on-init --force
+  #   else
+  #         echo "***************************** SKIPPING APPLYING ************************************"
+  #         echo "Terraform apply runs only on branch main - skipping apply on '$BRANCH_NAME' branch."
+  #         echo "************************************************************************************"
+  #   fi
+
 logsBucket: gs://logs_cloud_build
 options:
   pool:
