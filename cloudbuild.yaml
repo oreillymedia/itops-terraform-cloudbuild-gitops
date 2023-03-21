@@ -66,32 +66,23 @@ steps:
          exit 1                              
     fi
 
-    if [ $(pull_request.head.ref) == 'main' ] && [ $(pull_request.state) == 'APPROVED' ]
-      echo "***************************** TERRAFORM APPLY *******************************"
-      echo "************ "Runing terraform apply on '$BRANCH_NAME' branch."**************"
-      echo "*****************************************************************************"
-      token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
-      --audiences='vault/cloudbuild-iam' --project="$env"  --include-email)"
-      vc="$(vault write -field=token auth/gcp/login role='cloudbuild-iam' jwt=$token)"
-      mv /infractl/terraform /infractl/terraform-orig
-      ln -s /workspace/terraform /infractl/terraform
-      cd /infractl
-      infractl --vault-token "$vc" terraform apply --module "$module" --env "$env" --upgrade-on-init --force
+    if [ $(pull_request.head.ref) == 'main' ] && [ $(pull_request.state) == 'APPROVED' ]; then
+          echo "***************************** TERRAFORM APPLY *******************************"
+          echo "************ "Runing terraform apply on '$BRANCH_NAME' branch."**************"
+          echo "*****************************************************************************"
+          token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' \
+          --audiences='vault/cloudbuild-iam' --project="$env"  --include-email)"
+          vc="$(vault write -field=token auth/gcp/login role='cloudbuild-iam' jwt="$token")"
+          mv /infractl/terraform /infractl/terraform-orig
+          ln -s /workspace/terraform /infractl/terraform
+          cd /infractl
+          infractl --vault-token "$vc" terraform apply --module "$module" --env "$env" --upgrade-on-init --force
     else
-      echo "***************************** SKIPPING APPLYING ************************************"
-      echo "Terraform apply runs only on branch main - skipping apply on '$BRANCH_NAME' branch."
-      echo "************************************************************************************"
+          echo "***************************** SKIPPING APPLYING ************************************"
+          echo "Terraform apply runs only on branch main - skipping apply on '$BRANCH_NAME' branch."
+          echo "************************************************************************************"
     fi
-
-  # filters:
-  #   branches:
-  #     only:
-  #       - 'main'
-  #   pullRequestFilter:
-  #     branches:
-  #       - 'main'
-  #     states:
-  #       - 'APPROVED'
+    
 logsBucket: gs://logs_cloud_build
 options:
   pool:
