@@ -59,9 +59,8 @@ steps:
   args:
   - '-c'
   - |
-    echo $pull_request.head.ref
-    echo "the _HEAD_BRANCH is: $_HEAD_BRANCH"
-    echo "the _BASE_BRANCH is: $_BASE_BRANCH"
+    echo $_HEAD_BRANCH
+    echo $_BASE_BRANCH
   #   . <(git log -n1 | egrep '^\s+\w+\:\s\w+' | sed -Eze 's/\s+(\w+):\s(\S+)/: \${\1=\2} export \1;/g')
     
   #   if [ -z "$module" ] || [ -z "$env" ]; then
