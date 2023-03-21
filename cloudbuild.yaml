@@ -65,9 +65,8 @@ steps:
          echo 'missing required entries: module and/or env, check the documentation'
          exit 1                              
     fi
-    if: |
-     (pull_request.head.ref == 'main') &&
-     (pull_request.state == 'APPROVED')
+    
+    if [ $(pull_request.head.ref) == 'main' ] && [ $(pull_request.state == 'APPROVED' ]
      echo "***************************** TERRAFORM APPLY *******************************"
      echo "************ "Runing terraform apply on '$BRANCH_NAME' branch."**************"
      echo "*****************************************************************************"
