@@ -25,7 +25,7 @@ steps:
 
 - id: 'terraform-apply'
   name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
-  waitFor: ['terraform-plan']
+  # waitFor: ['terraform-plan']
   entrypoint: bash
   env:
      - 'INFRACTL_HOME=/infractl' 
