@@ -34,8 +34,10 @@ steps:
   - '-c'
   - |
     echo "In webhook"
-    echo $PULL_REQUEST_ID
-    echo $COMMIT_MESSAGE
+  options:
+    pullRequest:
+      filter: 'all(pull_request.reviews, review.status=="APPROVED")'
+    
   # - |
   #   if [ "$BRANCH_NAME" = "main" ]; then
   #     . <(git log -n1 | egrep '^\s+\w+\:\s\w+' | sed -Eze 's/\s+(\w+):\s(\S+)/: \${\1=\2} export \1;/g')
