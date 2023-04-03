@@ -30,13 +30,13 @@ steps:
   env:
      - 'INFRACTL_HOME=/infractl' 
      - 'VAULT_ADDR=https://itops-playground-vault-01.corp.oreilly.com:8200'
+     - 'PULL_REQUEST_FILTER=github.event_name=="pull_request" && github.event.action=="closed" && github.event.pull_request.merged==false && all(github.event.pull_request.reviews[*].state=="APPROVED")'
   args:
   - '-c'
   - |
     echo "In webhook"
-  options:
-    pullRequest:
-      filter: 'all(pull_request.reviews, review.status=="APPROVED")'
+    echo $$PULL_REQUEST_FILTER
+  
     
   # - |
   #   if [ "$BRANCH_NAME" = "main" ]; then
