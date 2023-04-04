@@ -4,7 +4,7 @@ steps:
   entrypoint: bash
   env:
      - 'INFRACTL_HOME=/infractl' 
-     - 'VAULT_ADDR=https://itops-core-vault-01.corp.oreilly.com:8200'
+     - 'VAULT_ADDR=https://itops-playground-vault-01.corp.oreilly.com:8200'
   args:
   - '-c'
   - |
