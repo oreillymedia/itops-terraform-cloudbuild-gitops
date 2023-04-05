@@ -1,6 +1,7 @@
 steps:
 - id: 'terraform-plan'
-  name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
+  name: ubuntu
+  # name: us-central1-docker.pkg.dev/itops-playground/container/infractl:latest
   entrypoint: bash
   env:
      - 'INFRACTL_HOME=/infractl' 
