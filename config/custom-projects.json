@@ -1,0 +1,66 @@
+{
+    "itops-prod": {
+        "cloud" : "gcp",
+        "clusters": [],
+        "region": "us-central1",
+        "project": "itops-prod-8140",
+        "vault_addr": "https://itops-core-vault-01.corp.oreilly.com:8200",
+        "auto_include_tfvars":["region", "project"]
+    },
+    "itops-stage": {
+        "cloud" : "gcp",
+        "region": "us-central1",
+        "clusters": [],
+        "project": "itops-stage",
+        "vault_addr": "https://itops-core-vault-01.corp.oreilly.com:8200",
+        "auto_include_tfvars":["region", "project"]
+    },
+    "itops-core": {
+        "cloud" : "gcp",
+        "region": "us-central1",
+        "clusters": [],
+        "project": "itops-core",
+        "vault_addr": "https://itops-core-vault-01.corp.oreilly.com:8200",
+        "auto_include_tfvars":["region", "project"]
+    },
+    "itops-playground": {
+        "cloud" : "gcp",
+        "clusters": [],
+        "region": "us-central1",
+        "project": "itops-playground",
+        "vault_addr": "https://itops-playground-vault-01.corp.oreilly.com:8200",
+        "auto_include_tfvars":["region", "project"]
+    },
+    "data-prod": {
+        "cloud" : "gcp",
+        "clusters": [],
+        "region": "us-central1",
+        "project": "data-prod-378016",
+        "vault_addr": "https://itops-core-vault-01.corp.oreilly.com:8200",
+        "auto_include_tfvars":["region", "project"]
+    },
+    "data-dev": {
+        "cloud" : "gcp",
+        "clusters": [],
+        "region": "us-central1",
+        "project": "data-dev-378016",
+        "vault_addr": "https://itops-core-vault-01.corp.oreilly.com:8200",
+        "auto_include_tfvars":["region", "project"]
+    },
+    "data-core": {
+        "cloud" : "gcp",
+        "region": "us-central1",
+        "clusters": [],
+        "project": "data-core-378900",
+        "vault_addr": "https://itops-core-vault-01.corp.oreilly.com:8200",
+        "auto_include_tfvars":["region", "project"]
+    },
+    "data-playground": {
+        "cloud" : "gcp",
+        "clusters": [],
+        "region": "us-central1",
+        "project": "data-playground-378016",
+        "vault_addr": "https://itops-core-vault-01.corp.oreilly.com:8200",
+        "auto_include_tfvars":["region", "project"]
+    }
+}

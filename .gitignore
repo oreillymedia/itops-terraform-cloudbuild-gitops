@@ -1,6 +1,7 @@
 .terraform*
 *.tfstate*
 *.tfplan
+tf-plan-file
 **/prod/
 **/modules
 **/Pipfile
