@@ -11,7 +11,6 @@ steps:
   - |
     apt-get update -y
     apt-get install -y iputils-ping
-  #  ping 10.200.83.225
     ping -c 5 itops-playground-vault-01.corp.oreilly.com
   # - |
   #   . <(git log -n1 | egrep '^\s+\w+\:\s\w+' | sed -Eze 's/\s+(\w+):\s(\S+)/: \${\1=\2} export \1;/g')
