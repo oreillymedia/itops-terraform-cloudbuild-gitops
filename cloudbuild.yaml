@@ -13,8 +13,6 @@ steps:
     if [ -z "$module" ] || [ -z "$env" ]; then
       echo 'missing required trailers: module and/or env.  skipping ci/cd'
       exit 0
-    else
-      
     fi
 
     token="$(gcloud auth print-identity-token --impersonate-service-account='cloudbuild@itops-playground.iam.gserviceaccount.com' --audiences='vault/cloudbuild-iam' --project="$env" --include-email)"
