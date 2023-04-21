@@ -55,6 +55,7 @@ steps:
       echo "Terraform apply runs only on branch main - skipping apply on '$BRANCH_NAME' branch."
       echo "************************************************************************************"
     fi
+
 logsBucket: gs://logs_cloud_build
 options:
   pool:
