@@ -7,7 +7,6 @@ resource "google_compute_instance" "default" {
   name         = var.vm_name
   machine_type = "e2-micro"
   zone         = var.zone
-
   tags = ["alain", "vm-test"]
 
   boot_disk {
